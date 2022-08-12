@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import Todo from '../Todo/Todo';
-import { Grid } from '../Grid/Grid.styled';
-
+import { List } from './TodoList.styled';
 
 const TodoList = ({ todos, onDeleteTodo, togglleComplited }) => (
-  <Grid>
+  <List>
     {todos.map(({ id, text, completed }) => (
       <Todo
         key={id}
@@ -18,8 +17,9 @@ const TodoList = ({ todos, onDeleteTodo, togglleComplited }) => (
         }}
       />
     ))}
-  </Grid>
+  </List>
 );
+
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(
     PropTypes.shape({
