@@ -7,14 +7,11 @@ const TodoList = ({ todos, onDeleteTodo, togglleComplited }) => (
     {todos.map(({ id, text, completed }) => (
       <Todo
         key={id}
+        id={id}
         text={text}
         completed={completed}
-        onDeleteTodo={() => {
-          onDeleteTodo(id);
-        }}
-        togglleComplited={() => {
-          togglleComplited(id);
-        }}
+        onDeleteTodo={onDeleteTodo}
+        togglleComplited={togglleComplited}
       />
     ))}
   </List>

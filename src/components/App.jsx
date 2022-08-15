@@ -1,4 +1,4 @@
-import { useState ,useEffect} from "react";
+import { useState ,useEffect,useCallback} from "react";
 import { nanoid } from "nanoid";
 import TodoEditer from "./TodoEditer/TodoEditer";
 import TodoList from "./TodoList/TodoList";
@@ -26,22 +26,28 @@ export const App = () => {
       };
       setTodos(prevTodos => [todo, ...prevTodos]);
     };
- const deleteTodo = todoId => {
-   setTodos(prevState => prevState.filter(todo => todo.id !== todoId));
- };
-  const complitedTodo = todoId => {
-    setTodos(prevState =>
-      prevState.map(todo => {
-        if (todo.id === todoId) {
-          return {
-            ...todo,
-            completed: !todo.completed,
-          };
-        }
-        return todo;
-      })
-    );
-  };
+ const deleteTodo = useCallback(
+   todoId => {
+     setTodos(prevState => prevState.filter(todo => todo.id !== todoId));
+   },
+   [setTodos]
+ );
+  const complitedTodo = useCallback(
+    todoId => {
+      setTodos(prevState =>
+        prevState.map(todo => {
+          if (todo.id === todoId) {
+            return {
+              ...todo,
+              completed: !todo.completed,
+            };
+          }
+          return todo;
+        })
+      );
+    },
+    [setTodos]
+  );
   return (
     <>
       <TodoEditer onSubmit={addTodo} />

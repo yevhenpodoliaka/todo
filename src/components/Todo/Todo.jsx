@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import { TodoItem, TodoText, IconDelete, CheckBox } from './Todo.styled';
 import {memo} from'react'
 
-const Todo = ({ text, completed, togglleComplited, onDeleteTodo }) => {
+const Todo = ({ id,text, completed, togglleComplited, onDeleteTodo }) => {
   console.log(`render ${text}`);
   return (
     <TodoItem>
       <CheckBox
         type="checkbox"
         checked={completed}
-        onChange={togglleComplited}
+        onChange={()=>togglleComplited(id)}
       />
       <TodoText completed={completed}>{text}</TodoText>
-      <button onClick={onDeleteTodo} aria-label="delete todo">
+      <button onClick={()=>onDeleteTodo(id)} aria-label="delete todo">
         <IconDelete />
       </button>
     </TodoItem>
