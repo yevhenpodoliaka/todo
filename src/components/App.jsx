@@ -2,6 +2,7 @@ import { useState ,useEffect,useCallback} from "react";
 import { nanoid } from "nanoid";
 import TodoEditer from "./TodoEditer/TodoEditer";
 import TodoList from "./TodoList/TodoList";
+import Form from "./MaterialForm/Form";
 
 
 const initialTodos = [
@@ -56,6 +57,7 @@ export const App = () => {
         onDeleteTodo={deleteTodo}
         togglleComplited={complitedTodo}
       />
+      <Form/>
     </>
   );
 };
